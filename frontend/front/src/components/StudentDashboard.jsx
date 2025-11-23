@@ -13,7 +13,7 @@ const StudentDashboard = () => {
     departement: "Génie Informatique"
   });
 
-  const [currentPage] = useState("dashboard");
+  const [currentPage, setCurrentPage] = useState("dashboard");
   const [showProfile, setShowProfile] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -78,8 +78,14 @@ const StudentDashboard = () => {
   ];
 
   const handleServiceClick = (service) => {
-    // Navigation vers la vraie page avec React Router
-    navigate(service.path);
+    // Si c'est l'emploi du temps ou le tableau de bord, afficher dans la page
+    if (service.action === "viewSchedule" || service.action === "dashboard" || 
+        service.action === "viewGrades" || service.action === "statistics") {
+      setCurrentPage(service.action);
+    } else {
+      // Navigation vers la vraie page avec React Router pour les autres services
+      navigate(service.path);
+    }
   };
 
   const handleProfileUpdate = () => {

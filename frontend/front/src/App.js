@@ -136,6 +136,14 @@ function App() {
                 }
               />
               <Route
+                path="/my-schedule"
+                element={
+                  <ProtectedRoute allowedRoles={["etudiant"]}>
+                    <MySchedule />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/notes"
                 element={
                   <ProtectedRoute allowedRoles={["etudiant"]}>
@@ -167,22 +175,30 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/messagerie"
+                element={
+                  <ProtectedRoute allowedRoles={["etudiant"]}>
+                    <Messaging />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
 
             {/* Pages sans sidebar (détachées du DashboardLayout) */}
             <Route
-              path="/messagerie"
+              path="/my-schedule-teacher"
               element={
-                <ProtectedRoute allowedRoles={["etudiant", "enseignant", "directeur_departement", "administratif"]}>
-                  <Messaging />
+                <ProtectedRoute allowedRoles={["enseignant", "directeur_departement"]}>
+                  <MySchedule />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/my-schedule"
+              path="/messagerie-teacher"
               element={
-                <ProtectedRoute allowedRoles={["etudiant", "enseignant", "directeur_departement"]}>
-                  <MySchedule />
+                <ProtectedRoute allowedRoles={["enseignant", "directeur_departement", "administratif"]}>
+                  <Messaging />
                 </ProtectedRoute>
               }
             />

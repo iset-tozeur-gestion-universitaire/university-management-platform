@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { useAuth } from '../contexts/AuthContext';
+import { LayoutDashboard, Calendar, BookOpen, BarChart3, Mail, Library, FileText, User, LogOut, Menu, X } from 'lucide-react';
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
@@ -22,44 +23,44 @@ const DashboardLayout = () => {
     { 
       label: "Tableau de bord", 
       description: "Vue d'ensemble",
-      icon: "📊",
+      icon: LayoutDashboard,
       path: "/student-dashboard"
     },
     { 
       label: "Mon emploi du temps", 
       description: "Consulter mon planning",
-      icon: "📅",
+      icon: Calendar,
       path: "/my-schedule"
     },
     { 
       label: "Mes notes", 
       description: "Résultats et bulletins",
-      icon: "📚",
+      icon: BookOpen,
       path: "/notes"
     },
     { 
       label: "Statistiques", 
       description: "Analyse de performance",
-      icon: "📈",
+      icon: BarChart3,
       path: "/statistiques"
     },
     { 
       label: "Messagerie", 
       description: "Messages et notifications",
-      icon: "✉️",
+      icon: Mail,
       path: "/messagerie",
       badge: "7"
     },
     { 
       label: "Bibliothèque", 
       description: "Ressources pédagogiques",
-      icon: "📖",
+      icon: Library,
       path: "/bibliotheque"
     },
     { 
       label: "Scolarité", 
       description: "Documents administratifs",
-      icon: "📋",
+      icon: FileText,
       path: "/scolarite"
     },
   ];
@@ -135,9 +136,14 @@ const DashboardLayout = () => {
                   padding: '8px',
                   borderRadius: '8px',
                   background: isActive ? 'rgba(255,255,255,0.2)' : '#eff6ff',
-                  fontSize: '20px'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}>
-                  {service.icon}
+                  {React.createElement(service.icon, {
+                    size: 20,
+                    color: isActive ? 'white' : '#3b82f6'
+                  })}
                 </div>
                 
                 <div style={{ flex: 1, textAlign: 'left' }}>
@@ -173,7 +179,7 @@ const DashboardLayout = () => {
         <div style={{ padding: '16px', borderTop: '1px solid #e5e7eb', background: 'linear-gradient(to right, #eff6ff, #eef2ff)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
             <div style={{ padding: '8px', background: '#dbeafe', borderRadius: '8px' }}>
-              👤
+              <User size={20} color="#3b82f6" />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: '14px', fontWeight: '600', color: '#1f2937', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -200,11 +206,13 @@ const DashboardLayout = () => {
                   borderRadius: '8px',
                   color: 'white',
                   cursor: 'pointer',
-                  fontSize: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   transition: 'all 0.2s'
                 }}
               >
-                {sidebarOpen ? '✕' : '☰'}
+                {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -245,7 +253,7 @@ const DashboardLayout = () => {
                   transition: 'all 0.2s'
                 }}
               >
-                👤 <span>Profil</span>
+                <User size={18} /> <span>Profil</span>
               </button>
               <button
                 onClick={handleLogout}
@@ -265,7 +273,7 @@ const DashboardLayout = () => {
                   transition: 'all 0.2s'
                 }}
               >
-                🚪 <span>Déconnexion</span>
+                <LogOut size={18} /> <span>Déconnexion</span>
               </button>
             </div>
           </div>

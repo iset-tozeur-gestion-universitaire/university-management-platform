@@ -101,13 +101,13 @@ const TeacherDashboard = () => {
         alert("Ouverture des évaluations...");
         break;
       case "viewSchedule":
-        navigate("/my-schedule");
+        navigate("/my-schedule-teacher");
         break;
       case "statistics":
         alert("Ouverture des statistiques...");
         break;
       case "messaging":
-        navigate('/messagerie');
+        navigate('/messagerie-teacher');
         break;
       case "resources":
         alert("Ouverture des ressources pédagogiques...");
